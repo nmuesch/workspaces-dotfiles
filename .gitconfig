@@ -15,6 +15,22 @@
         email = nicholas.muesch@datadoghq.com
         # seen on your laptop by issuing `git config --global user.signingkey`
         signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILhVVfWQuyaG4eKl2sJSfzT2SRcj+4ReprI0Uc1aq5HT nicholas.muesch+git-commit-signing@datadoghq.com
+[alias]
+    co = checkout
+    last = log -1 HEAD
+    br = branch
+    ci = commit
+    st = status
+    co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
+    nudge = !sh -c `git commit --allow-empty -m \"Nudge CI\" && git push origin HEAD` -
+    # FZF checkout branch
+    fco = "!f() { git branch --format='%(refname:short)' | fzf --height 40% --layout reverse --border --query=\"$1\" --select-1 | xargs git switch; }; f"
+    # alias to check out a forked pr - https://github.community/t/checkout-a-branch-from-a-fork/276/2
+    co-pr = !sh -c 'git fetch origin pull/$1/head:pr/$1 && git checkout pr/$1' -
+    # alias to checkout the default branch of a repo
+    cod = !git co $(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+    codu = !git co $(git remote show origin | sed -n '/HEAD branch/s/.*: //p') && git pull origin $(git remote show origin | sed -n '/HEAD branch/s/.*: //p')
+    undo = !git reset --soft HEAD~
 [commit]
         gpgsign = true
 [gpg]
