@@ -25,6 +25,5 @@ echo "Setting up Starship"
 touch ~/.zshrc
 curl -sS https://starship.rs/install.sh | sh -s -- -y
 append_to_zshrc 'eval "$(starship init zsh)"'
-source ~/.zshrc
 starship preset plain-text-symbols -o ~/.config/starship.toml
 
