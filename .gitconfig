@@ -1,0 +1,26 @@
+# This is a basic gitconfig template that includes some bare minimums for
+# interacting with git in a workspace.  The content between <Angle Brackets>
+# in this file must be replaced with values appropriate to you.  This can 
+# Be done manually or with the following series of commands run from the current
+# folder:
+#
+#  $ HOME=$(pwd) git config --global user.name "Bits the Dog"
+#  $ HOME=$(pwd) git config --global user.email "bits@datadoghq.com"
+#  $ HOME=$(pwd) git config --global user.signingkey "$(git config --global user.signingkey)"
+
+[user]
+        # The name you want to appear as the author of your commits
+        name = Nicholas Muesch
+	# The e-mail address that is associated to the author of your commits
+        email = nicholas.muesch@datadoghq.com
+        # seen on your laptop by issuing `git config --global user.signingkey`
+        signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILhVVfWQuyaG4eKl2sJSfzT2SRcj+4ReprI0Uc1aq5HT nicholas.muesch+git-commit-signing@datadoghq.com
+[commit]
+        gpgsign = true
+[gpg]
+        format = ssh
+
+
+# This is a url rewrite that helps [go and maybe rust] tooling that downloads libraries from our private repos
+[url "git@github.com:DataDog/"]
+        insteadOf = https://github.com/DataDog/
